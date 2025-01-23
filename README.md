@@ -1,4 +1,7 @@
-# MS and PRS
+# Szukanie mimnimów z użyciem PRS i MS
 Projekt na zajęcia z przedmiotu Statystyka na uczelni AGH.
 ## Działanie
-Porównuje działanie algorytmów **PRS** i **MS** na funkcjach **Ackleya** i **Schwafela** z użyciem języka **R**.
+Program szuka minima w funkcjach **Ackleya** i **Schwafela** przy użyciu algorytmów statystycznych **Pure Random Search** i  **Multi-Start** z użyciem języka **R**.
+## Autorzy
+- Seweryn Tasior
+- Jan Sarba
