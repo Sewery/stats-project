@@ -95,6 +95,7 @@ generate_boxplot(
   "Wykres pudelkowy dla funkcji Ackleya 2D"
 )
 #Mozesz podmienic na csc
+dir.create("./data", showWarnings = FALSE)
 write.table(results[[1]],file="./data/ms-data-ackley-2d.data")
 write.table(results[[2]],file="./data/ps-data-ackley-2d.data")
 # res_read<-read.table(file="ms-data-ackley-2d.data")
@@ -137,7 +138,7 @@ write.table(results[[2]],file="./data/ps-data-schwafel-10d.data")
 ## 20D for Schwafel function
 print("---------")
 print("Wartości minimalne dla 20D")
-fn <- makeRosenbrockFunction(20)
+fn <- makeSchwefelFunction(20)
 results <- compare(fn, 20)
 write.table(results[[1]],file="./data/ms-data-schwafel-20d.data")
 write.table(results[[2]],file="./data/ps-data-schwafel-20d.data")
