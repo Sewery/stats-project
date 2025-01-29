@@ -1,0 +1,232 @@
+---
+title: "Projekt Zaliczeniowy"
+author: "Jan Sarba, Seweryn Tasior"
+output: pdf_document
+---
+
+# Wstęp
+Projekt ten ma na celu proste opracowanie statystyczne wyników porównania działania wybranych algorytmów minimalizacji stochastycznej.    
+
+Do porównania wybraliśmy algorytmy:  
+* Poszukikwanie przypadkowe (Pure Random Search, PRS)  
+* Metoda wielokrotnego startu (multi-start, MS)  
+
+Do porównań użyliliśmy funkji:  
+* Ackley’a  
+* Schwefela\
+
+# WYNIKI
+
+``` {r echo=FALSE}
+a2ms <- read.table("./data/ms-data-ackley-2d.data")$V1
+a2prs <- read.table("./data/prs-data-ackley-2d.data")$V1
+a10ms <- read.table("./data/ms-data-ackley-10d.data")$V1
+a10prs <- read.table("./data/prs-data-ackley-10d.data")$V1
+a20ms <- read.table("./data/ms-data-ackley-20d.data")$V1
+a20prs <- read.table("./data/prs-data-ackley-20d.data")$V1
+r2ms <- read.table("./data/ms-data-schwefel-2d.data")$V1
+r2prs <- read.table("./data/prs-data-schwefel-2d.data")$V1
+r10ms <- read.table("./data/ms-data-schwefel-10d.data")$V1
+r10prs <- read.table("./data/prs-data-schwefel-10d.data")$V1
+r20ms <- read.table("./data/ms-data-schwefel-20d.data")$V1
+r20prs <- read.table("./data/prs-data-schwefel-20d.data")$V1
+```
+
+## Funkcja Ackleya 2D
+### MS
+* Średnia: `r mean(a2ms)`
+* Wartość najmniejsza: `r min(a2ms)`
+* Wartość największa: `r max(a2ms)`
+* Mediana: `r median(a2ms)`
+* Dolny kwartyl: `r quantile(a2ms, 0.25)`
+* Górny kwartyl: `r quantile(a2ms, 0.75)`
+
+### PRS
+* Średnia: `r mean(a2prs)`
+* Wartość najmniejsza: `r min(a2prs)`
+* Wartość największa: `r max(a2prs)`
+* Mediana: `r median(a2prs)`
+* Dolny kwartyl: `r quantile(a2prs, 0.25)`
+* Górny kwartyl: `r quantile(a2prs, 0.75)`
+
+
+## Funkcja Ackleya, 10D
+### MS
+* Średnia: `r mean(a10ms)`
+* Wartość najmniejsza: `r min(a10ms)`
+* Wartość największa: `r max(a10ms)`
+* Mediana: `r median(a10ms)`
+* Dolny kwartyl: `r quantile(a10ms, 0.25)`
+* Górny kwartyl: `r quantile(a10ms, 0.75)`
+
+### PRS
+* Średnia: `r mean(a10prs)`
+* Wartość najmniejsza: `r min(a10prs)`
+* Wartość największa: `r max(a10prs)`
+* Mediana: `r median(a10prs)`
+* Dolny kwartyl: `r quantile(a10prs, 0.25)`
+* Górny kwartyl: `r quantile(a10prs, 0.75)`
+
+## Funkcja Ackleya, 20D
+### MS
+* Średnia: `r mean(a20ms)`
+* Wartość najmniejsza: `r min(a20ms)`
+* Wartość największa: `r max(a20ms)`
+* Mediana: `r median(a20ms)`
+* Dolny kwartyl: `r quantile(a20ms, 0.25)`
+* Górny kwartyl: `r quantile(a20ms, 0.75)`
+
+### PRS
+* Średnia: `r mean(a20prs)`
+* Wartość najmniejsza: `r min(a20prs)`
+* Wartość największa: `r max(a20prs)`
+* Mediana: `r median(a20prs)`
+* Dolny kwartyl: `r quantile(a20prs, 0.25)`
+* Górny kwartyl: `r quantile(a20prs, 0.75)`
+
+## Funkcja schwefela, 2D
+### MS
+* Średnia: `r mean(r2ms)`
+* Wartość najmniejsza: `r min(r2ms)`
+* Wartość największa: `r max(r2ms)`
+* Mediana: `r median(r2ms)`
+* Dolny kwartyl: `r quantile(r2ms, 0.25)`
+* Górny kwartyl: `r quantile(r2ms, 0.75)`
+
+### PRS
+* Średnia: `r mean(r2prs)`
+* Wartość najmniejsza: `r min(r2prs)`
+* Wartość największa: `r max(r2prs)`
+* Mediana: `r median(r2prs)`
+* Dolny kwartyl: `r quantile(r2prs, 0.25)`
+* Górny kwartyl: `r quantile(r2prs, 0.75)`
+
+## Funkcja schwefela, 10D
+### MS
+* Średnia: `r mean(r10ms)`
+* Wartość najmniejsza: `r min(r10ms)`
+* Wartość największa: `r max(r10ms)`
+* Mediana: `r median(r10ms)`
+* Dolny kwartyl: `r quantile(r10ms, 0.25)`
+* Górny kwartyl: `r quantile(r10ms, 0.75)`
+
+### PRS
+* Średnia: `r mean(r10prs)`
+* Wartość najmniejsza: `r min(r10prs)`
+* Wartość największa: `r max(r10prs)`
+* Mediana: `r median(r10prs)`
+* Dolny kwartyl: `r quantile(r10prs, 0.25)`
+* Górny kwartyl: `r quantile(r10prs, 0.75)`
+
+## Funkcja schwefela, 20D
+### MS
+* Średnia: `r mean(r20ms)`
+* Wartość najmniejsza: `r min(r20ms)`
+* Wartość największa: `r max(r20ms)`
+* Mediana: `r median(r20ms)`
+* Dolny kwartyl: `r quantile(r20ms, 0.25)`
+* Górny kwartyl: `r quantile(r20ms, 0.75)`
+
+### PRS
+* Średnia: `r mean(r20prs)`
+* Wartość najmniejsza: `r min(r20prs)`
+* Wartość największa: `r max(r20prs)`
+* Mediana: `r median(r20prs)`
+* Dolny kwartyl: `r quantile(r20prs, 0.25)`
+* Górny kwartyl: `r quantile(r20prs, 0.75)`
+
+## Kolejne histogramy
+```{r echo=FALSE}
+hist(a2ms, main="Funkcja Ackleya 2D, MS", 
+     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,30), xlim = c(0, 12)
+     )
+```
+
+```{r echo=FALSE}
+hist(a2prs, main="Funkcja Ackleya 2D, PRS", 
+     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,30), xlim = c(0, 12)
+     )
+```
+
+```{r echo=FALSE}
+hist(a10ms, main="Funkcja Ackleya 10D, MS", 
+     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,20), xlim = c(15, 20)
+     )
+```
+
+```{r echo=FALSE}
+hist(a10prs, main="Funkcja Ackleya 10D, PRS", 
+     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,20), xlim = c(15, 20)
+     )
+```
+
+```{r echo=FALSE}
+hist(a20ms, main="Funkcja Ackleya 20D, MS", 
+     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,30), xlim = c(18, 22)
+     )
+```
+
+```{r echo=FALSE}
+hist(a20prs, main="Funkcja Ackleya 20D, PRS", 
+     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,30), xlim = c(18, 22)
+     )
+```
+
+```{r echo=FALSE}
+hist(r2ms, main="Funkcja Schwefela 2D, MS", 
+     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,50), xlim = c(-850, -600)
+     )
+```
+
+```{r echo=FALSE}
+hist(r2prs, main="Funkcja Schwefela 2D, PRS", 
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,50), xlim = c(-850, -600)
+     )
+```
+
+```{r echo=FALSE}
+hist(r10ms, main="Funkcja schwefela 10D, MS", 
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,20), xlim = c(-4000, -1200)
+     )
+```
+
+```{r echo=FALSE}
+hist(r10prs, main="Funkcja Schwefela 10D, PRS", 
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,20), xlim = c(-4000, -1200)
+     )
+```
+
+```{r echo=FALSE}
+hist(r20ms, main="Funkcja Schwefela 20D, MS", 
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,20), xlim = c(-7000, -2000)
+     )
+```
+
+```{r echo=FALSE}
+hist(r20prs, main="Funkcja Schwefela 20D, PRS", 
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilość wystąpień", labels = TRUE,
+     ylim = c(0,20), xlim = c(-7000, -2000)
+     )
+```
+
+# Wykresy pudełkowe
+
+```{r echo=FALSE}
+boxplot(a2ms,a2prs, main = "Funkcja Ackleya, 2D", names = c("MS", "PRS"), ylab = "Wartość")
+boxplot(a10ms,a10prs, main = "Funkcja Ackleya, 10D", names = c("MS", "PRS"), ylab = "Wartość")
+boxplot(a20ms,a20prs, main = "Funkcja Ackleya, 20D", names = c("MS", "PRS"), ylab = "Wartość")
+boxplot(r2ms,r2prs, main = "Funkcja Schwefela, 2D", names = c("MS", "PRS"), ylab = "Wartość")
+boxplot(r10ms,r10prs, main = "Funkcja Schwefela, 10D", names = c("MS", "PRS"), ylab = "Wartość")
+boxplot(r20ms,r20prs, main = "Funkcja Schwefela, 20D", names = c("MS", "PRS"), ylab = "Wartość")
+```

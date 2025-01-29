@@ -1,6 +1,14 @@
 library(smoof)
 library(plot3D)
 
+save_results <- function(results, function_name, dimension) {
+  ms_file <- paste("./data/ms-data-", function_name, "-", dimension, "d.data", sep = "")
+  prs_file <- paste("./data/prs-data-", function_name, "-", dimension, "d.data", sep = "")
+  
+  write.table(results[[1]], file = ms_file, row.names = FALSE, col.names = FALSE)
+  write.table(results[[2]], file = prs_file, row.names = FALSE, col.names = FALSE)
+}
+
 ms_algo <- function(dim, lower_b, upper_b, fun, number_of_points) {
   min_val <- Inf
   num_of_cals <- 0
@@ -86,6 +94,7 @@ generate_all_plots <- function(results, function_name, dimension) {
     results[[2]],
     paste("Wykres pudełkowy dla", function_name, dimension, "D")
   )
+  save_results(results, function_name, dimension)
 }
 
 
