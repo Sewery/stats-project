@@ -49,6 +49,7 @@ r20prs <- read.table("./data/prs-data-schwefel-20d.data")$V1
 * Dolny kwartyl: `r quantile(a2prs, 0.25)`
 * Górny kwartyl: `r quantile(a2prs, 0.75)`
 
+\newpage
 
 ## Funkcja Ackleya, 10D
 ### MS
@@ -84,6 +85,8 @@ r20prs <- read.table("./data/prs-data-schwefel-20d.data")$V1
 * Dolny kwartyl: `r quantile(a20prs, 0.25)`
 * Górny kwartyl: `r quantile(a20prs, 0.75)`
 
+\newpage
+
 ## Funkcja schwefela, 2D
 ### MS
 * Średnia: `r mean(r2ms)`
@@ -118,6 +121,8 @@ r20prs <- read.table("./data/prs-data-schwefel-20d.data")$V1
 * Dolny kwartyl: `r quantile(r10prs, 0.25)`
 * Górny kwartyl: `r quantile(r10prs, 0.75)`
 
+\newpage
+
 ## Funkcja schwefela, 20D
 ### MS
 * Średnia: `r mean(r20ms)`
@@ -135,88 +140,90 @@ r20prs <- read.table("./data/prs-data-schwefel-20d.data")$V1
 * Dolny kwartyl: `r quantile(r20prs, 0.25)`
 * Górny kwartyl: `r quantile(r20prs, 0.75)`
 
+\newpage
+
 ## Kolejne histogramy
 ```{r echo=FALSE}
 hist(a2ms, main="Funkcja Ackleya 2D, MS", 
-     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,30), xlim = c(0, 12)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,30), xlim = c(0, 12), breaks = seq(0, 12, by = 1)
      )
 ```
 
 ```{r echo=FALSE}
 hist(a2prs, main="Funkcja Ackleya 2D, PRS", 
-     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,30), xlim = c(0, 12)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,30), xlim = c(0, 12), breaks = seq(0, 12, by = 1)
      )
 ```
 
 ```{r echo=FALSE}
 hist(a10ms, main="Funkcja Ackleya 10D, MS", 
-     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,20), xlim = c(15, 20)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,30), xlim = c(15, 20), breaks = seq(15, 20, by = 0.5)
      )
 ```
 
 ```{r echo=FALSE}
 hist(a10prs, main="Funkcja Ackleya 10D, PRS", 
-     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,20), xlim = c(15, 20)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,30), xlim = c(15, 20), breaks = seq(15, 20, by = 0.5)
      )
 ```
 
 ```{r echo=FALSE}
 hist(a20ms, main="Funkcja Ackleya 20D, MS", 
-     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,30), xlim = c(18, 22)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,40), xlim = c(16, 21), breaks = seq(16, 21, by = 0.5)
      )
 ```
 
 ```{r echo=FALSE}
 hist(a20prs, main="Funkcja Ackleya 20D, PRS", 
-     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,30), xlim = c(18, 22)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,40), xlim = c(16, 21), breaks = seq(16, 21, by = 0.5)
      )
 ```
 
 ```{r echo=FALSE}
 hist(r2ms, main="Funkcja Schwefela 2D, MS", 
-     xlab = "Znaleziona wartość minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,50), xlim = c(-850, -600)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,50), xlim = c(-850, -600), breaks = seq(-850, -600, by = 25)
      )
 ```
 
 ```{r echo=FALSE}
 hist(r2prs, main="Funkcja Schwefela 2D, PRS", 
-     xlab = "Znaleziona wartosc minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,50), xlim = c(-850, -600)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,50), xlim = c(-850, -600), breaks = seq(-850, -600, by = 25)
      )
 ```
 
 ```{r echo=FALSE}
 hist(r10ms, main="Funkcja schwefela 10D, MS", 
-     xlab = "Znaleziona wartosc minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,20), xlim = c(-4000, -1200)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,40), xlim = c(-4000, -1000), breaks = seq(-4000, -1000, by = 300)
      )
 ```
 
 ```{r echo=FALSE}
 hist(r10prs, main="Funkcja Schwefela 10D, PRS", 
-     xlab = "Znaleziona wartosc minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,20), xlim = c(-4000, -1200)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,40), xlim = c(-4000, -1000), breaks = seq(-4000, -1000, by = 300)
      )
 ```
 
 ```{r echo=FALSE}
 hist(r20ms, main="Funkcja Schwefela 20D, MS", 
-     xlab = "Znaleziona wartosc minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,20), xlim = c(-7000, -2000)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,40), xlim = c(-7000, -2000), breaks = seq(-7000, -2000, by = 500)
      )
 ```
 
 ```{r echo=FALSE}
 hist(r20prs, main="Funkcja Schwefela 20D, PRS", 
-     xlab = "Znaleziona wartosc minimum", ylab = "Ilość wystąpień", labels = TRUE,
-     ylim = c(0,20), xlim = c(-7000, -2000)
+     xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,40), xlim = c(-7000, -2000), breaks = seq(-7000, -2000, by = 500)
      )
 ```
 
