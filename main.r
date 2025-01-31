@@ -55,8 +55,13 @@ compare <- function(fun, dim) {
   res_prs <- replicate(50, prs_algo(dim, lower_b, upper_b, fun, 50 * budget))
   avg_min_prs <- mean(res_prs)
   print(paste("Wartość średnia:", avg_min_prs))
+  
+  print("Test t-Studenta:")
+  test_result <- t.test(res_ms, res_prs, alternative = "two.sided", var.equal = FALSE)
+  print(test_result)
+  
   print("-------")
-  return(list(res_ms, res_prs))
+  return(list(res_ms, res_prs, test_result))
 }
 
 # Generate histograms

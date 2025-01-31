@@ -146,14 +146,12 @@ r20prs <- read.table("./data/prs-data-schwefel-20d.data")$V1
 ```{r echo=FALSE}
 hist(a2ms, main="Funkcja Ackleya 2D, MS", 
      xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
-     ylim = c(0,30), xlim = c(0, 12), breaks = seq(0, 12, by = 1)
      )
 ```
 
 ```{r echo=FALSE}
 hist(a2prs, main="Funkcja Ackleya 2D, PRS", 
      xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
-     ylim = c(0,30), xlim = c(0, 12), breaks = seq(0, 12, by = 1)
      )
 ```
 
@@ -237,3 +235,110 @@ boxplot(r2ms,r2prs, main = "Funkcja Schwefela, 2D", names = c("MS", "PRS"), ylab
 boxplot(r10ms,r10prs, main = "Funkcja Schwefela, 10D", names = c("MS", "PRS"), ylab = "Wartość")
 boxplot(r20ms,r20prs, main = "Funkcja Schwefela, 20D", names = c("MS", "PRS"), ylab = "Wartość")
 ```
+
+# T-testy
+
+```{r echo=FALSE}
+library(smoof)
+library(plot3D)
+
+compare <- function(fun, dim) {
+  lower_b <- as.numeric(getLowerBoxConstraints(fun))[1]
+  upper_b <- as.numeric(getUpperBoxConstraints(fun))[1]
+  
+  print("MS:")
+  res_1 <- ms_algo(dim, lower_b, upper_b, fun, 100)
+  budget <- round(res_1[2] / 100)
+  res_2 <- replicate(49, ms_algo(dim, lower_b, upper_b, fun, 50))
+  res_ms <- c(res_1[1], res_2[1, ])
+  avg_min_ms <- mean(res_ms)
+  print(paste("Wartość średnia:", avg_min_ms))
+  
+  print("PRS:")
+  res_prs <- replicate(50, prs_algo(dim, lower_b, upper_b, fun, 50 * budget))
+  avg_min_prs <- mean(res_prs)
+  print(paste("Wartość średnia:", avg_min_prs))
+  
+  print("Test t-Studenta:")
+  test_result <- t.test(res_ms, res_prs, alternative = "two.sided", var.equal = FALSE)
+  print(test_result)
+  
+  print("-------")
+  return(list(res_ms, res_prs, test_result))
+}
+
+ms_algo <- function(dim, lower_b, upper_b, fun, number_of_points) {
+  min_val <- Inf
+  num_of_cals <- 0
+  for (i in 1:number_of_points) {
+    point <- runif(dim, min = lower_b, max = upper_b)
+    ms <- optim(
+      point, fun,
+      method = "L-BFGS-B",
+      lower = rep(lower_b, dim), upper = rep(upper_b, dim)
+    )
+    num_of_cals <- num_of_cals + ms$counts[1]
+    if (min_val > ms$value) {
+      min_val <- ms$value
+    }
+  }
+  return(c(min_val, num_of_cals))
+}
+
+prs_algo <- function(dim, lower_b, upper_b, fun, number_of_points) {
+  min_val <- Inf
+  for (i in 1:number_of_points) {
+    rand_point <- runif(dim, min = lower_b, max = upper_b)
+    curr <- fun(rand_point)
+    if (min_val > curr) {
+      min_val <- curr
+    }
+  }
+  return(min_val)
+}
+
+fn <- makeAckleyFunction(2)
+results <- compare(fn, 2)
+results[[3]] # Wynik testu t-Studenta
+
+## Ackley 10D
+fn <- makeAckleyFunction(10)
+results <- compare(fn, 10)
+results[[3]] # Wynik testu t-Studenta
+
+## Ackley 20D
+fn <- makeAckleyFunction(20)
+results <- compare(fn, 20)
+results[[3]] # Wynik testu t-Studenta
+
+## Schwefel 2D
+fn <- makeSchwefelFunction(2)
+results <- compare(fn, 2)
+results[[3]] # Wynik testu t-Studenta
+
+## Schwefel 10D
+fn <- makeSchwefelFunction(10)
+results <- compare(fn, 10)
+results[[3]] # Wynik testu t-Studenta
+
+## Schwefel 20D
+fn <- makeSchwefelFunction(20)
+results <- compare(fn, 20)
+results[[3]] # Wynik testu t-Studenta
+```
+
+# Wnioski
+
+- **Porównanie średnich wyników**:  
+  - W każdej analizowanej parze MRS i PRS wartości średnie różnią się istotnie.  
+  - PRS uzyskuje wyższe wartości średnie w większości przypadków.  
+
+- **Testy istotności statystycznej**:  
+  - Wszystkie testy t-Studenta dają bardzo niskie wartości p (< 0.0005), co oznacza, że różnice są istotne statystycznie.  
+  - 95-procentowe przedziały ufności nie obejmują zera, co dodatkowo potwierdza istotność różnic.  
+
+- **Interpretacja wyników**:  
+  - Hipoteza zerowa, zakładająca brak różnicy między średnimi wynikami MRS i PRS, jest odrzucana we wszystkich przypadkach.  
+  - PRS osiąga lepsze wyniki od MRS dla wszystkich testowanych przypadków.  
+  - W niektórych przypadkach różnice są bardzo duże, co może sugerować lepszą efektywność PRS.  
+
