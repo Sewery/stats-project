@@ -146,12 +146,14 @@ r20prs <- read.table("./data/prs-data-schwefel-20d.data")$V1
 ```{r echo=FALSE}
 hist(a2ms, main="Funkcja Ackleya 2D, MS", 
      xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,35), xlim = c(0, 20), breaks = seq(0, 20, by = 2)
      )
 ```
 
 ```{r echo=FALSE}
 hist(a2prs, main="Funkcja Ackleya 2D, PRS", 
      xlab = "Znaleziona wartosc minimum", ylab = "Ilosc wystapien", labels = TRUE,
+     ylim = c(0,35), xlim = c(0, 20), breaks = seq(0, 20, by = 2)
      )
 ```
 
